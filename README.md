@@ -76,6 +76,8 @@ Trying more configurations is encouraged! Important arguments are explained as b
 --adapt_embed # fine-tune embeddings and projections when adapt_mode is ON
 --lora # fine-tune low rank matrices of Transformer when adapt_mode is ON
 --pretrained_lm language_model_name # you could try 'gpt2' and 'gpt2-medium'
+--co_training # use language loss as auxiliary objective
+--co_lambda # the weight of language loss, like 0.1
 ```
 
 ## Acknowledgement
