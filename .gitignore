@@ -1,0 +1,10 @@
+__pycache__/
+*.pkl
+*.zip
+chibiT/
+*.pt 
+tmp
+*.log
+*.mp4
+baseline/wandb/
+code/data

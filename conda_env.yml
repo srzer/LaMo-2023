@@ -1,0 +1,16 @@
+name: lamo-d4rl
+channels:
+- pytorch
+dependencies:
+- python=3.9
+- cudatoolkit=11.7
+- numpy
+- pip
+- pip:
+  - gym
+  - mujoco-py
+  - numpy
+  - torch
+  - transformers
+  - wandb
+  - loralib
