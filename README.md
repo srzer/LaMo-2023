@@ -7,7 +7,7 @@ Ruizhe Shi*, Yuyao Liu*, Yanjie Ze, Simon S. Du, Huazhe Xu
 ## Environment
 You need to install 
 
-1. packages in conda_env.yml 
+1. packages in env.yml 
 2. D4RL (follow the guidance in [D4RL](https://github.com/Farama-Foundation/D4RL))
 
 ## Data
@@ -32,7 +32,7 @@ python ratio_dataset.py
 cd ..
 ```
 
-Besides, you can get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing).
+Besides, you can directly get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing).
 
 ## Tasks
 We provide 8 Tasks in total, of various data ratios:
@@ -55,12 +55,7 @@ An example is:
 bash scripts.sh hopper medium 0.1 reproduce 0 0
 ```
 
-If you want to view results on wandb, you could add
-```bash
--w
-```
-in the last line of scripts, and remember to modify line 435, 436 of '/code/experiment.py' as:
-
+If you want to view results on [Weights & Biases](wandb.ai), you need to modify line 435, 436 of '/code/experiment.py' as:
 ```python
 entity=[your-group-name],
 project=[your-project-name],
@@ -69,6 +64,7 @@ project=[your-project-name],
 Trying more configurations is encouraged! Important arguments are explained as below:
 
 ```bash
+-w # enable wandb
 --sample_ratio your_sample_ratio # determine the size of the data you are training on, like 0.1
 --data_suffix your_data_version_name # you could downsample the data by yourself, default is "d1"
 --mlp_embedding # use MLP as embeddings and projections

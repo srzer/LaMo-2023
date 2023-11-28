@@ -27,6 +27,7 @@ import logging
 import math
 import os
 import random
+import functools
 
 import datasets
 import torch
@@ -75,6 +76,7 @@ def get_dataset(
     overwrite_cache=False,
     per_device_train_batch_size=2,
     per_device_eval_batch_size=2,
+    shuffle_words=False,
 ):
     accelerator = Accelerator()
 
@@ -132,7 +134,6 @@ def get_dataset(
     # https://huggingface.co/docs/datasets/loading_datasets.html.
 
     # Load pretrained model and tokenizer
-    #
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, use_fast=True)
 
     # Preprocessing the datasets.
@@ -167,9 +168,8 @@ def get_dataset(
                 f"({tokenizer.model_max_length}). Using block_size={tokenizer.model_max_length}."
             )
         block_size = min(block_size, tokenizer.model_max_length)
-
     # Main data processing function that will concatenate all texts from our dataset and generate chunks of block_size.
-    def group_texts(examples):
+    def group_texts(examples, shuffle_words=False):
         # Concatenate all texts.
         concatenated_examples = {k: sum(examples[k], []) for k in examples.keys()}
         total_length = len(concatenated_examples[list(examples.keys())[0]])
@@ -179,7 +179,7 @@ def get_dataset(
             total_length = (total_length // block_size) * block_size
         # Split by chunks of max_len.
         result = {
-            k: [t[i : i + block_size] for i in range(0, total_length, block_size)]
+            k: [random.sample(t[i : i + block_size], len(t[i : i + block_size])) for i in range(0, total_length, block_size)] if shuffle_words else [t[i : i + block_size] for i in range(0, total_length, block_size)]
             for k, t in concatenated_examples.items()
         }
         result["labels"] = result["input_ids"].copy()
@@ -193,19 +193,22 @@ def get_dataset(
     # https://huggingface.co/docs/datasets/package_reference/main_classes.html#datasets.Dataset.map
 
     lm_datasets = tokenized_datasets.map(
-        group_texts,
+        functools.partial(group_texts, shuffle_words=shuffle_words),
         batched=True,
         num_proc=preprocessing_num_workers,
         load_from_cache_file=not overwrite_cache,
         desc=f"Grouping texts in chunks of {block_size}",
     )
+    
+
+    lm_datasets = lm_datasets.filter(lambda x: len(x["input_ids"]) == 1024, num_proc = preprocessing_num_workers)
 
     train_dataset = lm_datasets["train"]
     eval_dataset = lm_datasets["validation"]
-
+    
     # Log a few random samples from the training set:
-    for index in random.sample(range(len(train_dataset)), 3):
-        logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
+    # for index in random.sample(range(len(train_dataset)), 3):
+        # logger.info(f"Sample {index} of the training set: {train_dataset[index]}.")
 
     # DataLoaders creation:
     train_dataloader = DataLoader(
@@ -223,3 +226,6 @@ def get_dataset(
         train_dataloader, eval_dataloader
     )
     return train_dataloader, eval_dataloader
+
+if __name__ == "__main__":
+    _, _ = get_dataset(dataset_name="wikitext", dataset_config_name="wikitext-103-raw-v1", shuffle_words=True)
