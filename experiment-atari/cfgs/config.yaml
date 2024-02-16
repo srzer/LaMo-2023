@@ -1,0 +1,81 @@
+defaults:
+  - _self_
+  - env: breakout
+
+seed: 0
+
+tag: null
+vec_envs: 1
+dataset_type: medium
+model_name: dt
+pretrained_lm: gpt2
+description: desc
+sample_ratio: 0.1
+log_to_wandb: 1
+
+
+train:
+  lr: 3e-4
+  weight_decay: 0.1
+  vec_envs: ${vec_envs}
+  env_name: ${env.env_name}
+  train_steps: 100_000
+  batch_size: 128
+  eval_interval: 200
+  eval_episodes: 5
+  warmup_tokens: 375e6
+  final_tokens: 260e9
+  rtg_target: ${env.rtg_target}
+
+nlp_train:
+  co_training: 0
+  co_lambda: 0.1
+  nlp_dataset_name: wikitext
+  nlp_dataset_config_name: wikitext-103-raw-v1
+
+buffer:
+  _target_: buffer.AtariBuffer
+  dataset_type: ${dataset_type}
+  stack_frame: 4
+  sample_type: traj_length
+  context_len: ${model.context_len}
+  sample_ratio: ${sample_ratio}
+  
+
+model_aliase:
+  dt: model.DecisionTransformer
+
+model:
+  _target_: ${model_aliase.${model_name}}
+  drop_p: 0.1
+  context_len: 30
+  reward_scale: 1
+  max_timestep: ${env.max_timestep}
+  cnn_channels: [32, 64, 64]
+  cnn_kernels: [8, 4, 3]
+  cnn_strides: [4, 2, 1]
+  cnn_paddings: [0, 0, 0]
+  pretrained_lm: ${pretrained_lm}
+  mlp_embedding: 0
+  random_initialize: 0
+  adapt_cfg:
+    use_adapt: 0
+    adapt_wte: 0
+    adapt_embed: 1
+    adapt_ln: 0
+    adapt_attn: 0
+    adapt_ff: 0
+    only_adapt_last_two_blocks: 0
+    adapt_last_two_blocks: 0
+  lora_cfg: 
+    use_lora: 0
+    lora_attn_dim: 32
+  random_pretrain: 0
+  bad_pretrain: 0
+  
+
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: ./runs/${now:%Y-%m-%d}/${now:%H-%M-%S}_${env.env_name}_${dataset_type}_${model_name}_${pretrained_lm}_${sample_ratio}_${seed}_${description}

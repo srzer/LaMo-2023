@@ -1,0 +1,5 @@
+checkpoints/
+wandb/
+data/D4RL/
+experiment_logs/
+**wandb/

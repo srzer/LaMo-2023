@@ -1,0 +1,5 @@
+env_name: breakout
+rtg_target: 
+  - 90
+  - 120 
+max_timestep: 4096
