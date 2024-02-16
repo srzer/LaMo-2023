@@ -102,7 +102,7 @@ cd experiment-atari
 conda env create -f env.yml
 ```
 ### Dataset
-The dataset will be downloaded automatically and cached locally by the package [d4rl-atari](https://github.com/takuseno/d4rl-atari) once you launch an experiment. To reproduce our result of downsampled dataset, you can set the seed to be identical to ours (3 seeds, 0, 1, 2), and our implementation of ``experiment-atari/buffer.py`` will make sure that the downsampled dataset will also be identical to ours. 
+The dataset will be downloaded automatically and cached locally by the package [d4rl-atari](https://github.com/takuseno/d4rl-atari) once you launch an experiment. To reproduce our results of downsampled datasets, you can set the seed to be identical to ours (3 seeds, 0, 1, and 2), and our implementation of ``experiment-atari/buffer.py`` will make sure that the downsampled dataset will also be identical to ours. 
 
 # 🛠️ Usage 
 ## D4RL
@@ -138,7 +138,7 @@ Trying more configurations is encouraged! Important arguments are explained as b
 --co_lambda # the weight of language loss, like 0.1
 ```
 ## Atari 
-To reproduce our results on Breakout with one-click, run the following commands
+To reproduce our results on Breakout with one click, run the following commands
 ```bash 
 cd experiment-atari
 bash run.sh 
