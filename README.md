@@ -8,7 +8,6 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/srzer/LaMo-2023/blob/master/LICENSE)
 
 This repo is the official code release for the ICLR 2024 conference paper:
-
 <p align="center">&nbsp;<table><tr><td>
     <p align="center">
     <strong>
@@ -17,16 +16,17 @@ This repo is the official code release for the ICLR 2024 conference paper:
         </a><br/>
     </strong>
     Ruizhe Shi*<sup>1</sup>, Yuyao Liu*<sup>1</sup>, Yanjie Ze<sup>2</sup>, Simon Shaolei Du<sup>3</sup>, Huazhe Xu<sup>124</sup><br>
-    <sup>1</sup><em>Tsinghua University, IIIS&nbsp;&nbsp;</em>
+    <b>The International Conference on Learning Representations (ICLR) 2024</b><br>
+    <sup>1</sup><em>Tsinghua Universtiy, IIIS&nbsp;&nbsp;</em>
     <sup>2</sup><em>Shanghai Qi Zhi Institute&nbsp;&nbsp;</em>
-    <sup>4</sup><em>University of Washington&nbsp;&nbsp;</em>
-    <sup>5</sup><em>Shanghai AI Lab</em><br>
+    <sup>3</sup><em>University of Washington&nbsp;&nbsp;</em>
+    <sup>4</sup><em>Shanghai AI Lab</em><br>
     *Equal contribution. Order is decided by coin flip.
     </p>
 </td></tr></table>&nbsp;</p>
 
-# 🧾 Introduction
 
+# 🧾 Introduction
 We propose **LaMo**, an offline RL framework that leverages the pre-trained **La**nguage Models (LMs) for low-level **Mo**tion control. On sparse-reward tasks, **LaMo** achieves strong results and surpasses recent strong algorithms CQL, IQL, TD3+BC, and DT; On dense-reward tasks, **LaMo** significantly improves Decision Transformer and closes the gap between value-based methods and DT-based methods. Notably, in low-data scenarios, our method demonstrates powerful few-shot learning ability, which can be attributed to the inductive bias from pre-trained LMs.
 
 <p align="center">
