@@ -7,7 +7,8 @@
 [![Twitter](https://img.shields.io/badge/Twitter-X-blue.svg)](https://x.com/arankomatsuzaki/status/1719533721794019506?s=20)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/srzer/LaMo-2023/blob/master/LICENSE)
 
-This repo is the official code for the [ICLR 2024](https://iclr.cc) conference paper:
+This repo is the official code release for the ICLR 2024 conference paper:
+
 <p align="center">&nbsp;<table><tr><td>
     <p align="center">
     <strong>
