@@ -2,6 +2,7 @@
 <p align="center">
   <h1 align="center">Unleashing the Power of Pre-trained Language Models for Offline Reinforcement Learning</h1>
 </p>
+
 [![pytorch](https://img.shields.io/badge/Python-PyTorch-orange.svg)](https://www.pytorch.org)
 [![arXiv](https://img.shields.io/badge/ArXiv-2310.20587-b31b1b.svg)](https://arxiv.org/abs/2310.20587)
 [![Twitter](https://img.shields.io/badge/Twitter-X-blue.svg)](https://x.com/arankomatsuzaki/status/1719533721794019506?s=20)
