@@ -87,7 +87,9 @@ python ratio_dataset.py
 cd ..
 ```
 
-Besides, you can directly get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing).
+Besides, you can directly get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
+
+You can also try generating the data using a PPO agent trained by yourself, as provided in ‘data/data_generation_PPO’.
 
 ## Atari
 ### Environment
@@ -137,7 +139,10 @@ Trying more configurations is encouraged! Important arguments are explained as b
 --co_training # use language loss as auxiliary objective
 --co_lambda # the weight of language loss, like 0.1
 ```
+We provided all scripts in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
+
 ## Atari 
+
 To reproduce our results on Breakout with one click, run the following commands
 ```bash 
 cd experiment-atari
