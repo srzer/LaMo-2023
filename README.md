@@ -68,8 +68,8 @@ Install D4RL by following the guidance in [D4RL](https://github.com/Farama-Found
 
 Degrade the dm-control and mujoco package:
 ```bash
-pip install mujoco=2.3.7
-pip install dm-control=1.0.14
+pip install mujoco==2.3.7
+pip install dm-control==1.0.14
 ```
 
 #### Install torch and other dependencies
