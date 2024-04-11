@@ -47,13 +47,14 @@ Below, we visualize **8** tasks across **3** domains that we consider.
 </p>
 
 # 💻 Installation
-## D4RL
+## D4RL-tasks
 ### Environment
+We can only guarantee the reproducibility with the environment configuration as below.
 #### Install MuJoCo
 First, you need to download the file from this [link](https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz) and `tar -xvf the_file_name` in the `~/.mujoco` folder. Then, run the following commands.
 ```bash
 cd experiment-d4rl
-conda env create -f env.yml
+conda create -n lamo-d4rl python=3.8.17
 ```
 After that, add the following lines to your `~/.bashrc` file:
 ```bash
@@ -65,14 +66,29 @@ Remember to `source ~/.bashrc` to make the changes take effect.
 #### Install D4RL
 Install D4RL by following the guidance in [D4RL](https://github.com/Farama-Foundation/D4RL).
 
+Degrade the dm-control and mujoco package:
+```bash
+pip install mujoco=2.3.7
+pip install dm-control=1.0.14
+```
+
+#### Install torch and other dependencies
+```bash
+pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
+pip install -r requirements.txt
+```
+
 ### Dataset
+
 To download original D4RL data, 
 ```bash
 cd data
 python download_d4rl_datasets.py
 ```
 
-To get downsampled data, you need to modify line 10 of 'data/mujoco/ratio_dataset.py' and line 10 of 'data/kitchen/ratio_dataset.py' as 
+As for downsampled data, **if you want to reproduce our experiments**, you should directly get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
+
+You can also generate more downsampled data by modifing line 10 of 'data/mujoco/ratio_dataset.py' and line 10 of 'data/kitchen/ratio_dataset.py' as 
 ```python
 suffix = [your data version name]
 ```
@@ -87,11 +103,9 @@ python ratio_dataset.py
 cd ..
 ```
 
-Besides, you can directly get our pre-processed data in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
+You can also try generating the data using a PPO agent trained by yourself (only support Reacher2d), as provided in ‘data/data_generation_PPO’.
 
-You can also try generating the data using a PPO agent trained by yourself, as provided in ‘data/data_generation_PPO’.
-
-## Atari
+## Atari-tasks
 ### Environment
 First make sure you have the dependencies to install Atari.
 ```bash
@@ -119,7 +133,10 @@ An example is:
 bash run.sh hopper medium 0.1 reproduce 0 0
 ```
 
-If you want to view results on [Weights & Biases](wandb.ai), you need to modify line 435, 436 of '/code/experiment.py' as:
+If you meet errors about D4RL or MuJoCo when running, these tips [1](https://github.com/openai/mujoco-py/issues/627),[2](https://github.com/openai/mujoco-py/issues/773) may help. 
+
+If you want to view results on [Weights & Biases](wandb.ai), you need to modify line 435, 436 of 'experiment.py' as:
+
 ```python
 entity=[your-group-name],
 project=[your-project-name],
@@ -139,7 +156,11 @@ Trying more configurations is encouraged! Important arguments are explained as b
 --co_training # use language loss as auxiliary objective
 --co_lambda # the weight of language loss, like 0.1
 ```
-We provided all scripts in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
+We provided all scripts in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). If you meet errors in running the scripts, try
+
+```bash
+dos2unix [the-script-name].sh
+```
 
 ## Atari 
 

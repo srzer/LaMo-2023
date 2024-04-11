@@ -6,4 +6,6 @@ tmp
 *.log
 *.mp4
 experiment-d4rl/data
+experiemnt-d4rl/wandb
+experiment-d4rl/checkpoints
 experiment-atari/runs

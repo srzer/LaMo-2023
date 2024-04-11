@@ -1,15 +1,15 @@
 export TRANSFORMERS_OFFLINE=0
 export TOKENIZERS_PARALLELISM=0
 
-model_type=dt # bc, dt
-lr=1e-4 # default is 1e-4
-lmlr=1e-5 # default is lr
-weight_decay=1e-5 # default is 1e-4
+model_type=dt
+lr=1e-4
+lmlr=1e-5
+weight_decay=1e-5
 dropout=0.1
-warmup_steps=2500 # default is 10000
-num_steps_per_iter=2500 # default is 2500
-max_iters=40 # default is 40
-num_eval_episodes=20 # default is 100
+warmup_steps=2500
+num_steps_per_iter=2500
+max_iters=40
+num_eval_episodes=20
 
 env=${1}
 if [ "$env" == "reacher2d" ]; then

@@ -90,7 +90,7 @@ def experiment(
 
     # load dataset
     data_suffix = variant["data_suffix"]
-    ratio_str = "-" + str(variant["sample_ratio"]) + data_suffix if variant["sample_ratio"] < 1 else ""
+    ratio_str = "-" + str(variant["sample_ratio"]) + "-" + data_suffix if variant["sample_ratio"] < 1 else ""
     if env_name in ["walker2d", "hopper", "halfcheetah", "reacher2d"]:
         dataset_path = f"../data/mujoco/{env_name}-{dataset}{ratio_str}-v2.pkl"
     elif env_name == "kitchen":
@@ -432,8 +432,8 @@ def experiment(
             name=exp_prefix,
             group=group_name,
             # NOTE: fill in the name of your own wandb project
-            entity="your-group-name",
-            project="your-project-name",
+            entity="your-entity",
+            project="your-project",
             config=variant,
         )
         # wandb.watch(model)  # wandb has some bug
