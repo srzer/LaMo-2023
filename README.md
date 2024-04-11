@@ -122,15 +122,12 @@ The dataset will be downloaded automatically and cached locally by the package [
 
 # 🛠️ Usage 
 ## D4RL
-After installing the packages and data, to reproduce our results on D4RL, you only need to run
-```bash
-cd experiment-d4rl
-bash run.sh [env_name] [dataset_name] [sample_ratio] [description] [seed] [gpu]
-```
+After installing the packages and data, to reproduce our results on D4RL, you only need to run scripts provided in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). 
 
-An example is:
+If you meet errors in running those scripts, try
+
 ```bash
-bash run.sh hopper medium 0.1 reproduce 0 0
+dos2unix [the-script-name].sh
 ```
 
 If you meet errors about D4RL or MuJoCo when running, these tips [1](https://github.com/openai/mujoco-py/issues/627),[2](https://github.com/openai/mujoco-py/issues/773) may help. 
@@ -140,6 +137,18 @@ If you want to view results on [Weights & Biases](wandb.ai), you need to modify 
 ```python
 entity=[your-group-name],
 project=[your-project-name],
+```
+
+You can also design your own script as ``run.sh''.
+
+```bash
+cd experiment-d4rl
+bash run.sh [env_name] [dataset_name] [sample_ratio] [description] [seed] [gpu]
+```
+
+An example is:
+```bash
+bash run.sh hopper medium 0.1 reproduce 0 0
 ```
 
 Trying more configurations is encouraged! Important arguments are explained as below:
@@ -155,11 +164,6 @@ Trying more configurations is encouraged! Important arguments are explained as b
 --pretrained_lm language_model_name # you could try 'gpt2' and 'gpt2-medium'
 --co_training # use language loss as auxiliary objective
 --co_lambda # the weight of language loss, like 0.1
-```
-We provided all scripts in [this link](https://drive.google.com/drive/folders/1c3htmB0bCixakM12EmDG4Qr3nMihrj6t?usp=sharing). If you meet errors in running the scripts, try
-
-```bash
-dos2unix [the-script-name].sh
 ```
 
 ## Atari 
